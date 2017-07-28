@@ -14,7 +14,7 @@ bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 
 void FBullCowGame::Reset()
 {
-	constexpr int32 MAX_TRIES = 8;
+	constexpr int32 MAX_TRIES = 3;
 	const FString HIDDEN_WORD = "planet";
 
 	MyMaxTries = MAX_TRIES;
@@ -32,7 +32,7 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 	{
 		return EGuessStatus::Not_Isogram;
 	}
-	else if (false) //if the guess isn't all lowercase 
+	else if (!IsLowercase(Guess)) //if the guess isn't all lowercase 
 	{
 		return EGuessStatus::Not_Lowercase; // TODO write function
 	}
@@ -96,6 +96,24 @@ bool FBullCowGame::IsIsogram(FString Word) const
 		} else {
 			LetterSeen[Letter] = true; //add the letter to the map as seen
 		}		
+	}
+
+	return true; //for example in cases where /0 is entered
+}
+
+bool FBullCowGame::IsLowercase(FString Word) const
+{
+	//treat 0 and 1 lette words as isograms
+	if (Word.length() <= 1) { return true;  }
+
+	for (auto Letter : Word)
+	{
+		if (!islower(Letter))
+		{//if not a lowercase letter
+			return false;
+		}
+		//otherwise
+			//return true
 	}
 
 	return true; //for example in cases where /0 is entered
