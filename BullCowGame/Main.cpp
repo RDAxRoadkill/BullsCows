@@ -4,19 +4,22 @@ user interaction. For game logic see the FBullCowGame class.
 */
 
 #pragma once
+
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
+//to make syntax Unreal friendly
 using FText = FString;
 using int32 = int;
 
+//function prototypes as outside a class
 void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
 bool AskToPlayAgain();
 void PrintGameSummary();
-FBullCowGame BCGame; //Instantiate a new game
+FBullCowGame BCGame; //Instantiate a new game, which we re-use across plays
 
 //the entry point for our  application
 int main() 
@@ -32,7 +35,6 @@ int main()
 	return 0;
 }
 
-//introduce the game
 void PrintIntro() 
 {
 	std::cout << "\n\nWelcome to Bulls and Cows!\n";
@@ -49,6 +51,7 @@ void PrintIntro()
 	return;
 }
 
+//plays a single game to completion
 void PlayGame()
 {
 	BCGame.Reset();
@@ -123,5 +126,4 @@ void PrintGameSummary()
 	{
 		std::cout << "Better luck next time!\n";
 	}
-		return;
 }
