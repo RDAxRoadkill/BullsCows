@@ -3,6 +3,7 @@ This acts as the view in a MVC pattern, and is responsible all
 user interaction. For game logic see the FBullCowGame class.
 */
 
+#pragma once
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
@@ -65,7 +66,7 @@ void PlayGame()
 		std::cout << ". Cows = " << BullCowCount.Cows << "\n\n";
 	}
 
-	void PrintGameSummary();
+	PrintGameSummary();
 	return;
 }
 
@@ -82,7 +83,7 @@ FText GetValidGuess()
 		getline(std::cin, Guess);
 
 		//check status and give feedback
-		 Status = BCGame.CheckGuessValidity(Guess);
+		Status = BCGame.CheckGuessValidity(Guess);
 		switch (Status) {
 		case EGuessStatus::Wrong_Length:
 			std::cout << "Please enter a " << BCGame.GetHiddenWordLength() << " letter word. \n\n";
